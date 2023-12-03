@@ -8,11 +8,13 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+        generate_statistics: true
 
 logging:
   level:
     org:
       hibernate:
+        stat: DEBUG
         sql: debug
         type:
           descriptor:

@@ -2,7 +2,7 @@ package com.violetbeach.hibernateplayground.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.violetbeach.hibernateplayground.support.JpaTestContext;
+import com.violetbeach.hibernateplayground.support.context.JpaTestContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,11 @@
 package com.violetbeach.hibernateplayground.hibernate;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.violetbeach.hibernateplayground.order.Order;
-import com.violetbeach.hibernateplayground.support.JpaTestContext;
+import com.violetbeach.hibernateplayground.support.QueryCountUtil;
+import com.violetbeach.hibernateplayground.support.context.JpaTestContext;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +18,21 @@ class OrderHibernateTest extends JpaTestContext {
     @DisplayName("@Basic의 fetch가 LAZY여도 기본적으로 해당 필드를 EAGER로 가져온다.")
     void lazyField_ItWorksEager() {
         // given
-        String title = "Title";
         Order order = Order.builder()
-            .title(title)
+            .title("Title")
             .build();
 
-        em.persistAndFlush(order);
+        em.persist(order);
+        em.flush();
         em.clear();
 
         // when
-        em.find(Order.class, order.getId());
+        Order findOrder = em.find(Order.class, order.getId());
+        String title = findOrder.getTitle();
+
+        // then
+        long selectQueryCount =  QueryCountUtil.getSelectQueryCount(em);
+        assertEquals(1, selectQueryCount);
     }
 
 }
