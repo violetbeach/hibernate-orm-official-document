@@ -12,7 +12,8 @@ class OrderTest extends JpaTestContext {
     @DisplayName("persist를 수행하면 ID가 할당된다.")
     void persist() {
         // given
-        Order order = new Order();
+        Order order = Order.builder()
+            .build();
 
         // when
         em.persist(order);
