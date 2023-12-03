@@ -31,7 +31,7 @@ class OrderHibernateTest extends JpaTestContext {
         String title = findOrder.getTitle();
 
         // then
-        long selectQueryCount =  QueryCountUtil.getSelectQueryCount(em);
+        long selectQueryCount = QueryCountUtil.getSelectQueryCount(em);
         assertEquals(1, selectQueryCount);
     }
 
