@@ -1,11 +1,10 @@
 package com.violetbeach.hibernateplayground.hibernate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.violetbeach.hibernateplayground.order.Order;
 import com.violetbeach.hibernateplayground.support.QueryCountUtil;
 import com.violetbeach.hibernateplayground.support.context.JpaTestContext;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,7 @@ class OrderHibernateTest extends JpaTestContext {
         String title = findOrder.getTitle();
 
         // then
-        long selectQueryCount = QueryCountUtil.getSelectQueryCount(em);
+        long selectQueryCount = QueryCountUtil.getEntityLoadCount(em);
         assertEquals(1, selectQueryCount);
     }
 
